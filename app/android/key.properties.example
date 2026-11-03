@@ -1,0 +1,29 @@
+# 复制为同目录下的 key.properties 并填入真实值。
+#
+# ⚠️ 本文件含明文库口令。它虽被 .gitignore 忽略，但仍躺在项目目录里——
+#    所以 keystore 本体**必须放在仓库外**（见下方 storeFile），
+#    否则"打包整个项目目录"这个高频动作（软著/比赛材料/发给别人/zip 备份）
+#    会把钥匙和口令一起带走，.gitignore 对这类动作完全不设防。
+#    完整的外部依赖与备份要求见 docs/AI协作手册 第 1.5 节。
+#
+# 只需生成一次。之后每个版本都必须用同一个 keystore —— 换钥匙等于逼已装用户
+# 卸载重装（本地明细数据随之丢失）。口令一旦忘记，这个包名的应用永远无法再更新。
+
+# 生成命令（口令交互式输入，别加 -storepass/-keypass，否则口令进 shell 历史）：
+#
+#   New-Item -ItemType Directory -Force -Path D:\keystore\touch-mileage | Out-Null
+#   D:\dev\android-studio\jbr\bin\keytool.exe -genkeypair -v -storetype PKCS12 `
+#     -keystore D:\keystore\touch-mileage\release.keystore `
+#     -alias touch-mileage-release -keyalg RSA -keysize 2048 -validity 10950
+#
+# 命名约定（未来不止一个产品时照此办）：
+#   D:\keystore\<产品名>\release.keystore     子目录做命名空间，文件名只留用途
+#   D:\keystore\<产品名>\NOTES.txt            别名/创建日/有效期/备份去向（绝不写口令）
+#   D:\keystore\backups\<产品名>-release-<YYYYMMDD>.keystore   带日期快照
+#   别名取 <产品名>-release，这样误并进同一个库文件也能分辨。
+#   -validity 10950 = 30 年，别设成 1 年。
+
+storeFile=D:/keystore/touch-mileage/release.keystore
+storePassword=替换成你的库口令
+keyAlias=touch-mileage-release
+keyPassword=替换成你的键口令

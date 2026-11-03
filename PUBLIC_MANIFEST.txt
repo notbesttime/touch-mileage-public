@@ -1,0 +1,30 @@
+﻿# 公开仓清单（由 tools/export_public.ps1 生成，请勿手改）
+# 源提交: df7d5ecfacd6613ebd3320be4e26bfc0f779b574
+# 导出时间: 2026-11-03T16:19:31+08:00
+# 文件数: 24
+#
+# sha256                                                          字节      路径
+1d9a4d80a1fc11024b3d97ec5904b4fe809174d2bf922ae45bdeeea981c1a2a0       174  .gitattributes
+5905beaaf935bf46d08292b433d81678f40f2a667187c0f297bd5eb951cbbb18      5200  app/android/app/src/main/AndroidManifest.xml
+0cdd737ab146d0c3ba2b7f7294d1ba4a190b4453b38cf039c6eec9e6c4befacb       740  app/android/app/src/main/kotlin/com/example/touch_mileage/DebugLog.kt
+d495512feced121dc08eb020eb01f06415891e53d1298e29ac422899fee3928f     13808  app/android/app/src/main/kotlin/com/example/touch_mileage/MainActivity.kt
+2b4b60e859b0a4b08e06912cf6a5145f4899075021ecacfbd8e68165b7971f84     21736  app/android/app/src/main/kotlin/com/example/touch_mileage/MileageAccessibilityService.kt
+0474edc15279471143d2b9631569781cf995b90405a99120d176e933813e6ceb     13167  app/android/app/src/main/kotlin/com/example/touch_mileage/MileageLedger.kt
+3fa61b9ccf1ddcaf940c64df7efe3a5b9282b61b5d442f8d5608ac015ff4599e      8213  app/android/app/src/main/kotlin/com/example/touch_mileage/MileageNotificationService.kt
+d8f43fdf5f6547c2438ef67a5cc58633cc8b94d9a11c96ddf559d1c210b64745      4484  app/android/app/src/main/kotlin/com/example/touch_mileage/SecureKeyStore.kt
+734eb68c8a8e00b1d56a3a8a5694fde0b2ef3ccb8f0ea4ab1c4ba047ef65bb31      1360  app/android/app/src/main/res/xml/accessibility_service_config.xml
+7397f9062b4b58af6b5506ea0db50bc83a1af9a7d661b616417b6be54e2bdae9      1811  app/android/key.properties.example
+d2456cb27192c97102a2fb8dbe06f12b266d5d971ad036582370d7695507cf59      4165  app/lib/calibration.dart
+5ac9efadcebc36df1c6eaed38edb6e4d5f0f896e946bba740f571bcefbf7c2fc     35944  app/lib/data/models.dart
+272471342a54e31f86f2608bd833f7e14aa6792fc665e9609b76528021afd26d     16784  app/lib/data/owner.dart
+e6103782499e2e238730e860d733625ea17b92a81a1388a16c3e7d354ea2d230     11419  app/lib/data/privacy_policy.dart
+6a826866462929a746fd2029fd757bebfbb31d89c7231eab07a2ae595d2e412d      5728  app/lib/data/secure_store.dart
+e8c3eaa223dcd3d274f9eddc9b9c573c6b69e7ebf8a7978e41de85ca05af0622     20279  app/lib/engine/engine_android.dart
+db06c6d237012e10de3f491539bed12e0a56d2370355c30d728e5c0e88673668     14648  app/lib/engine/mileage_ffi.dart
+1ca78d47c1c3bfdb2bede5d5199288f813a5e4c16c04abc35aa7a82d1d0771b8      3416  app/lib/format.dart
+d620998180d8ba274f553889514631adc675d6d116c42517fce81ad42e3bf12a     33524  assets/site.png
+7dc21125313d32824bcc7c648379e2bcbeab5e7fee53cea0de113a8aef9ba855      7545  EVIDENCE.md
+0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0     34523  LICENSE
+7ab9deaaef27e3690aff6fa116ae44ea2eba60d5bc4089d11373b84ac5a28a86      4459  README.md
+bbda7d8fcbc203bfc2d9ed0c7c83cbfbd456dc31918a7dcfe433de34045f584d     14552  tools/verify_a11y.mjs
+db11c04267f03e765946b8efd6e9d197454077d513aaa56d0bbd9c167a300c3d      2953  tools/verify_a11y.ps1

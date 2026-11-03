@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 触控里程 · 无障碍服务配置
+
+     隐私红线：绝不加 canRetrieveWindowContent（不读屏幕内容）。
+     accessibilityEventTypes 按需最小化：viewScrolled（滚动计价）、
+     touchInteractionStart（taps，API 31+，ColorOS 不派发）、
+     viewClicked（taps 兜底，2026-09-18：可点击控件的点击交互，全系统照发）、
+     windowStateChanged（前台应用自动判定板块——只读事件自带的包名字段，
+     不读窗口内容、不落盘）。
+     2026-10-11 移除 flagSendMotionEvents：它曾用于 M3 的 onMotionEvent 坐标流
+     实验（ColorOS 16 真机不派发，坑 9），路线早已出局。留着这个 flag 等于申请
+     「接收全局触摸事件」的能力却没有任何用途，与《隐私政策》第三节
+     「不采集触摸坐标」逐字矛盾——现在整条通道已删除，代码上可验证。 -->
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityEventTypes="typeViewScrolled|typeTouchInteractionStart|typeViewClicked|typeWindowStateChanged"
+    android:accessibilityFeedbackType="feedbackGeneric"
+    android:notificationTimeout="0"
+    android:canRetrieveWindowContent="false"
+    android:description="@string/a11y_service_description" />

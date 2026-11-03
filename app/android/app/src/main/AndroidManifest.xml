@@ -1,0 +1,88 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 联网（云同步/排行榜/更新检查）。必须写在 main：debug/profile 才合并的权限
+         在 release 包里不存在，v0.2 曾因只写在 debug 导致正式包完全连不上服务器。 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 常驻通知（里程速览）：前台服务保活 + 状态栏今日数据 -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <!-- 明文 HTTP 由 network_security_config 按域/IP 白名单放行；
+         不要再加 android:usesCleartextTraffic="true"（那会全站放行明文）。 -->
+    <!-- 系统自动备份：显式打开（本来就是默认值），但按下面的规则**排除 config.json**——
+         它含云令牌，距离汇总可以进用户的云备份，登录凭据不行（见《设计文档》6.4）。
+         ⚠️ 两个规则文件必须一起改：Android 11- 走 fullBackupContent，12+ 走 dataExtractionRules。 -->
+    <application
+        android:label="touch_mileage"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher"
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_rules"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:networkSecurityConfig="@xml/network_security_config">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            <!-- Specifies an Android theme to apply to this Activity as soon as
+                 the Android process has started. This theme is visible to the user
+                 while the Flutter UI initializes. After that, this theme continues
+                 to determine the Window background behind the Flutter UI. -->
+            <meta-data
+              android:name="io.flutter.embedding.android.NormalTheme"
+              android:resource="@style/NormalTheme"
+              />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <!-- 常驻通知前台服务：状态栏速览今日里程/条数/点击，兼作保活 -->
+        <service
+            android:name=".MileageNotificationService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="mileage_status_overview" />
+        </service>
+        <!-- M3 Shizuku 通道已于 2026-10-09 整体移除（决策 21）：此前这里注册着
+             rikka.shizuku.ShizukuProvider 且是 exported="true" 的对外组件，而 Shizuku
+             早在 2026-09-18 就从产品撤下（ColorOS 16 在系统层拦第三方 App 的 Shizuku
+             授权，激活门槛过不了）。休眠一个 exported 组件没有收益、只有暴露面，故删除。
+             移除理由与影响面见《踩坑与决策记录》决策 21。 -->
+        <!-- 无障碍采集服务：只数滚动/触摸事件次数，不读屏幕内容（M2 按屏计数） -->
+        <service
+            android:name=".MileageAccessibilityService"
+            android:exported="false"
+            android:label="触控里程"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config"/>
+        </service>
+        <!-- Don't delete the meta-data below.
+             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+    </application>
+    <!-- Required to query activities that can process text, see:
+         https://developer.android.com/training/package-visibility and
+         https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.
+
+         In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.PROCESS_TEXT"/>
+            <data android:mimeType="text/plain"/>
+        </intent>
+    </queries>
+</manifest>
