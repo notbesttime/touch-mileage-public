@@ -13,10 +13,10 @@
 // 不是装饰字段。
 
 /// 政策版本。改动正文必须同时改这里与 [kPrivacyPolicyEffectiveDate]。
-const String kPrivacyPolicyVersion = '1.2';
+const String kPrivacyPolicyVersion = '1.3';
 
 /// 生效日期（展示用，也是政策正文的一部分）。
-const String kPrivacyPolicyEffectiveDate = '2026-11-03';
+const String kPrivacyPolicyEffectiveDate = '2026-11-08';
 
 /// 联系我们（与下载页/关于页共用同一个邮箱）。
 const String kPrivacyPolicyContactEmail = 'xingguang2482@outlook.com';
@@ -91,9 +91,9 @@ const List<PolicySection> kPrivacyPolicySections = <PolicySection>[
       '每日汇总：日期、随机设备标识，以及第二部分的汇总量（距离、次数等数字）；'
           '若你开启过「按键统计」，其中也包含各按键的次数（同样不含顺序与内容）。'
           '不包含任何逐事件明细。',
-      '账号资料：你自取的登录账号、昵称、个性签名、简介、可选填写的 QQ 号'
-          '（仅用于忘记密码时人工协助找回，任何榜单与公开接口都不会返回它）、'
-          '头像图片、系统分配的公开短码 ID。',
+      '账号资料：你自取的登录账号、注册时填写的邮箱'
+          '（用于接收注册与找回密码的验证码，不用于任何营销推送）、'
+          '昵称、个性签名、简介、头像图片、系统分配的公开短码 ID。',
       '社交内容：好友关系，以及你主动发送的私信与聊天大厅消息。',
     ],
     paragraphs: <String>[
@@ -125,6 +125,9 @@ const List<PolicySection> kPrivacyPolicySections = <PolicySection>[
     '六、与第三方共享',
     bullets: <String>[
       '我们的服务器：你自愿开启云功能后，上述汇总与资料会上传到我们自有的服务器。',
+      '邮件发送服务（阿里云邮件推送 / 腾讯云 SES）：仅用于投递注册与找回密码的'
+          '验证码邮件。你的邮箱地址只为送达这一封邮件而交给发送服务，'
+          '不做其他用途、不用于营销。',
       'OpenStreetMap（Nominatim）：只在你使用「搜索距离」主动输入地名时，'
           '把该地名文本发送出去用于查询坐标，其余信息一律不发送。',
       '系统自动备份（Android）：系统自动备份可能把你的本机汇总数据备份到'

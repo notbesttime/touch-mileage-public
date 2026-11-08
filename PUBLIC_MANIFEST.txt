@@ -1,6 +1,6 @@
 ﻿# 公开仓清单（由 tools/export_public.ps1 生成，请勿手改）
-# 源提交: df7d5ecfacd6613ebd3320be4e26bfc0f779b574
-# 导出时间: 2026-11-03T16:19:31+08:00
+# 源提交: c1d94ce2e2e09d706d89cda823ff52d8d360150f
+# 导出时间: 2026-11-08T13:09:38+08:00
 # 文件数: 24
 #
 # sha256                                                          字节      路径
@@ -15,9 +15,9 @@ d8f43fdf5f6547c2438ef67a5cc58633cc8b94d9a11c96ddf559d1c210b64745      4484  app/
 734eb68c8a8e00b1d56a3a8a5694fde0b2ef3ccb8f0ea4ab1c4ba047ef65bb31      1360  app/android/app/src/main/res/xml/accessibility_service_config.xml
 7397f9062b4b58af6b5506ea0db50bc83a1af9a7d661b616417b6be54e2bdae9      1811  app/android/key.properties.example
 d2456cb27192c97102a2fb8dbe06f12b266d5d971ad036582370d7695507cf59      4165  app/lib/calibration.dart
-5ac9efadcebc36df1c6eaed38edb6e4d5f0f896e946bba740f571bcefbf7c2fc     35944  app/lib/data/models.dart
+2cbb318ab708588cb7a1e2ccbc4ded68e773eb5aa7c8b557ff891d5821207277     36436  app/lib/data/models.dart
 272471342a54e31f86f2608bd833f7e14aa6792fc665e9609b76528021afd26d     16784  app/lib/data/owner.dart
-e6103782499e2e238730e860d733625ea17b92a81a1388a16c3e7d354ea2d230     11419  app/lib/data/privacy_policy.dart
+a0146726bce373b8d4f30436d4ca9c0dcd59d995731ace73fa7b05095cee92b6     11671  app/lib/data/privacy_policy.dart
 6a826866462929a746fd2029fd757bebfbb31d89c7231eab07a2ae595d2e412d      5728  app/lib/data/secure_store.dart
 e8c3eaa223dcd3d274f9eddc9b9c573c6b69e7ebf8a7978e41de85ca05af0622     20279  app/lib/engine/engine_android.dart
 db06c6d237012e10de3f491539bed12e0a56d2370355c30d728e5c0e88673668     14648  app/lib/engine/mileage_ffi.dart

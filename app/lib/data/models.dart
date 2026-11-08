@@ -435,6 +435,8 @@ class AppConfig {
     this.cloudAccount = '',
     this.cloudToken = '',
     this.cloudId = '',
+    this.cloudEmail = '',
+    this.emailBindPromptDismissed = false,
     this.nickname = '',
     this.reportSeq = 0,
     this.reportSeqDate = '',
@@ -447,7 +449,6 @@ class AppConfig {
     this.statusMode = 1,
     this.statusText = '',
     this.frame = '',
-    this.qqBound = '',
     this.rememberAccount = false,
     this.autoLogin = false,
     this.deviceId = '',
@@ -589,6 +590,10 @@ class AppConfig {
 
   /// 公开短码 ID（如 M8K2-Q9X7），用于加好友和榜单展示，永不公开账号
   String cloudId;
+  // 注册/补绑的邮箱（'' = 老账号尚未绑定）。只用于「是否提示补绑」与资料页回显。
+  String cloudEmail;
+  // 「补绑邮箱」弹窗是否已被用户选择「以后再说」（避免每次启动都弹）。
+  bool emailBindPromptDismissed;
 
   /// 用户名（展示用，可修改）
   String nickname;
@@ -635,7 +640,6 @@ class AppConfig {
   String frame;
 
   /// 绑定的 QQ 号：仅用于忘记密码时人工找回，私有字段，任何榜单不显示
-  String qqBound;
 
   /// 登录框记住账号（下次预填账号名）
   bool rememberAccount;
@@ -727,6 +731,8 @@ class AppConfig {
         // 明文写进 config.json 等于把登录凭据和普通数据混在一起，
         // 复制数据目录/传网盘都会连凭据一起带走。
         if (cloudId.isNotEmpty) 'cloud_id': cloudId,
+        if (cloudEmail.isNotEmpty) 'cloud_email': cloudEmail,
+        if (emailBindPromptDismissed) 'email_bind_prompt_dismissed': true,
         if (nickname.isNotEmpty) 'nickname': nickname,
         if (reportSeq > 0) 'report_seq': reportSeq,
         if (reportSeqDate.isNotEmpty) 'report_seq_date': reportSeqDate,
@@ -739,8 +745,7 @@ class AppConfig {
         if (statusMode != 1) 'status_mode': statusMode,
         if (statusText.isNotEmpty) 'status_text': statusText,
         if (frame.isNotEmpty) 'frame': frame,
-        if (qqBound.isNotEmpty) 'qq_bound': qqBound,
-        if (rememberAccount) 'remember_account': rememberAccount,
+          if (rememberAccount) 'remember_account': rememberAccount,
         if (autoLogin) 'auto_login': autoLogin,
         if (deviceId.isNotEmpty) 'device_id': deviceId,
         if (syncSince != 0) 'sync_since': syncSince,
@@ -790,6 +795,9 @@ class AppConfig {
       // 把它迁移进加密存储并清除。新版配置里不存在这个键，恒为空串。
       cloudToken: (j['cloud_token'] as String?) ?? '',
       cloudId: (j['cloud_id'] as String?) ?? '',
+      cloudEmail: (j['cloud_email'] as String?) ?? '',
+      emailBindPromptDismissed:
+          (j['email_bind_prompt_dismissed'] as bool?) ?? false,
       nickname: (j['nickname'] as String?) ?? '',
       reportSeq: (j['report_seq'] as num?)?.toInt() ?? 0,
       reportSeqDate: (j['report_seq_date'] as String?) ?? '',
@@ -802,7 +810,6 @@ class AppConfig {
       statusMode: (j['status_mode'] as num?)?.toInt() ?? 1,
       statusText: (j['status_text'] as String?) ?? '',
       frame: (j['frame'] as String?) ?? '',
-      qqBound: (j['qq_bound'] as String?) ?? '',
       rememberAccount: (j['remember_account'] as bool?) ?? false,
       autoLogin: (j['auto_login'] as bool?) ?? false,
       deviceId: (j['device_id'] as String?) ?? '',
